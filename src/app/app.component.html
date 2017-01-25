@@ -1,3 +1,30 @@
-<h1>
-  {{title}}
-</h1>
+<div class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a href="../" class="navbar-brand">OurRoutes</a>
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <!-- <li>
+              <a routerLink="about">About</a>
+            </li>
+            <li>
+              <a routerLink="services">Services</a>
+            </li> -->
+        <li *ngFor="let item of getData">
+          <a routerLink= {{item.link}}> {{item.menuid}} </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
