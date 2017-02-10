@@ -7,20 +7,27 @@ import {routing} from './app.routing';
 
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
+import {LoginComponent} from './login/login.component';
+import { NoAuthGuard } from './login/no-auth-guard.service';
+import {SharedModule} from './common/shared.module';
 import { ServicesComponent } from './services/services.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent
+    AboutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    SharedModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [NoAuthGuard],
+  bootstrap: [AppComponent],
+  exports:[RouterModule]
 })
 export class AppModule { }

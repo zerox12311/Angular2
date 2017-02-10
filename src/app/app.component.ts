@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { AppService } from './app.service';
 
+import { TokenService } from './common/service/token.service';
+import { UserService } from './common/service/user.service';
+
 declare var SidebarNav: any;
-import '../js/SidebarNav.min.js';
+//import '../js/SidebarNav.min.js';
 
 @Component({
     selector: 'app-root',
@@ -17,20 +20,30 @@ import '../js/SidebarNav.min.js';
     // `,
     styleUrls: ['./app.component.css'],
     // styleUrls: ['../css/SidebarNav.min.css'],
-    providers: [AppService]
+    providers: [AppService, UserService, TokenService]
 })
 export class AppComponent {
     getData: Array<{ menu_group: string, link: string, menuid: string }> = [];
     title = 'app works!';
     menu: any;
     menu_title: any;
+    isSingle:boolean;
 
-    constructor(private _appService: AppService) {
-
-    }
+    constructor(private _appService: AppService,
+                private userService: UserService
+    ) { }
 
     ngOnInit() {
-        $('.sidebar-menu').SidebarNav();
+      console.log('opening');
+
+      //判斷token
+      this.userService.populate();
+      this.userService.isAuthenticated.subscribe((isAuthenticated)=>{
+        this.isSingle=isAuthenticated;
+      });
+
+
+     /*   $('.sidebar-menu').SidebarNav();
         console.log("GET MENU");
         this._appService.getMenu()
             .subscribe(
@@ -51,6 +64,6 @@ export class AppComponent {
                 console.log(this.menu);
 
             }
-            );
+            );*/
     }
 }
