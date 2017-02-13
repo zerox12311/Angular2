@@ -12,9 +12,9 @@ export class  ShowAuthedDirective implements  OnInit{
   ){}
 
   ngOnInit():void{
-     console.log("初始化指令");
      this.userService.isAuthenticated.subscribe(
        (isAuthenticated)=>{
+         console.log(isAuthenticated);
          if(isAuthenticated && this.condition || !isAuthenticated && !this.condition){
            this.viewContainer.createEmbeddedView(this.templateRef);
          }

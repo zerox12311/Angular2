@@ -13,8 +13,6 @@ export class UserService {
 
 
   constructor(private tokenServcie: TokenService) { }
- 
-
 
   //判斷是否登錄
   populate() {
@@ -41,10 +39,9 @@ export class UserService {
   //認證用戶是否有登錄過
   getAuth(user: User): boolean {
     if (user.username == 'xiajinxin' && user.password == '123') {
-      console.log("LOGIN SECCESS");
       user.token = 'token-' + new Date;
-      this.tokenServcie.saveToekn(user.token);
       localStorage.setItem('currentUser', "true");
+      this.setAuth(user);
       return true;
     }
     localStorage.removeItem('currentUser');

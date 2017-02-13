@@ -6,7 +6,79 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href='../css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css' />
 
-<aside class="sidebar-left">
+<layout-header *showAuthed="true"></layout-header>
+<div class="layout-main"  [class.single]="isSingle">
+      <aside class="sidebar-left" *showAuthed="true">
+        <nav class="navbar navbar-inverse">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+          </div>
+          <div class="layout-sidebar">
+            <div class="layout-sidebar-backdrop"></div>
+            <div class="layout-sidebar-body">
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="sidebar-menu">
+                  <li class="header">MAIN NAVIGATION</li>
+                  <li class="treeview">
+                    <a href="#">
+                      <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                      <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+                      <li><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+                    </ul>
+                  </li>
+
+                  <li class="treeview">
+                    <a href="#">
+                      <i class="fa fa-files-o"></i>
+                      <span>Layout Options</span>
+                      <span class="label label-primary pull-right">4</span>
+                    </a>
+                    <ul class="treeview-menu" style="display: none;">
+                      <li><a href="#"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                      <li><a href="#"><i class="fa fa-circle-o"></i> Boxed</a></li>
+                      <li><a href="#"><i class="fa fa-circle-o"></i> Fixed</a></li>
+                      <li class=""><a href="#"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="treeview" *ngFor="let key of menu_title" >
+                    <a href="#">
+                      <i class="fa fa-files-o"></i>
+                      <span>{{key}}</span>
+                      <span class="label label-primary pull-right">4</span>
+                    </a>
+                    <ul class="treeview-menu" style="display: none;"  >
+                      <li *ngFor="let item of menu[key]">
+                        <a routerLink={{item.link}}><i class="fa fa-circle-o"></i>{{item.menuid}}</a>
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </aside>
+      <div class="layout-content">
+        <div class="layout-content-body">
+          <router-outlet></router-outlet>
+        </div>
+       <!-- <div class='content container-fluid' style="background-color:#fafafa;">
+          <router-outlet></router-outlet>
+        </div>-->
+      </div>
+</div>
+<!--<aside class="sidebar-left">
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -59,82 +131,12 @@
           </li>
         </ul>
       </div>
-      <!-- /.navbar-collapse -->
+      &lt;!&ndash; /.navbar-collapse &ndash;&gt;
     </div>
-    <!-- /.container-fluid -->
+    &lt;!&ndash; /.container-fluid &ndash;&gt;
   </nav>
-</aside>
-
-<div class='content container-fluid' style="background-color:#fafafa;">
-  <router-outlet></router-outlet>
-  <!--<div class="col-sm-12">
-    <h1>jQuery sidebar-nav: Responsive Admin Menu Demo</h1>
-    <div class="jquery-script-ads" style="margin:30px auto;">
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">Admin Menu Content</div>
-      <div class="panel-body">
-        <p id="aaa1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque sit amet urna consectetur aliquam. Integer at ullamcorper dui. In quis orci et risus ultricies elementum in non tortor. Proin sapien mi, tempor vel condimentum porttitor,
-          sagittis efficitur augue. Mauris auctor erat in orci ullamcorper, ac rhoncus risus accumsan. Aliquam luctus elementum elit id pharetra. Pellentesque posuere, tellus eu vehicula placerat, elit neque auctor nulla, in sagittis velit nulla vitae
-          sapien. Suspendisse tempus tincidunt quam eget eleifend. Aenean vel iaculis nulla. Vestibulum vitae sapien feugiat, laoreet erat tempus, tempus tellus. Cras ac sapien lectus. Proin tristique sed est quis scelerisque. Nunc efficitur cursus massa,
-          vel volutpat tortor aliquet nec. Sed pharetra lacus vel ex efficitur sollicitudin. Duis id est in lectus vehicula ornare scelerisque id mauris. Phasellus convallis dapibus sem, sit amet sagittis tortor sodales in. Interdum et malesuada fames
-          ac ante ipsum primis in faucibus. Nunc et feugiat sapien, ut congue enim. Etiam tempus turpis ac sem iaculis, at porttitor orci euismod. Nulla semper ante eu tortor faucibus dapibus. Pellentesque id massa tincidunt, sodales tellus sit amet,
-          pulvinar mauris. Sed hendrerit in ipsum pulvinar sagittis. Pellentesque auctor ut est vel elementum. Sed ullamcorper, velit at laoreet convallis, arcu felis tristique neque, eu placerat purus nunc in magna. Praesent sit amet augue elementum,
-          mattis orci id, ultricies diam. Maecenas quis fringilla dolor. Donec pharetra cursus nunc. Aliquam scelerisque volutpat consectetur.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Admin Menu Content</div>
-      <div class="panel-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque sit amet urna consectetur aliquam. Integer at ullamcorper dui. In quis orci et risus ultricies elementum in non tortor. Proin sapien mi, tempor vel condimentum porttitor,
-          sagittis efficitur augue. Mauris auctor erat in orci ullamcorper, ac rhoncus risus accumsan. Aliquam luctus elementum elit id pharetra. Pellentesque posuere, tellus eu vehicula placerat, elit neque auctor nulla, in sagittis velit nulla vitae
-          sapien. Suspendisse tempus tincidunt quam eget eleifend. Aenean vel iaculis nulla. Vestibulum vitae sapien feugiat, laoreet erat tempus, tempus tellus. Cras ac sapien lectus. Proin tristique sed est quis scelerisque. Nunc efficitur cursus massa,
-          vel volutpat tortor aliquet nec. Sed pharetra lacus vel ex efficitur sollicitudin. Duis id est in lectus vehicula ornare scelerisque id mauris. Phasellus convallis dapibus sem, sit amet sagittis tortor sodales in. Interdum et malesuada fames
-          ac ante ipsum primis in faucibus. Nunc et feugiat sapien, ut congue enim. Etiam tempus turpis ac sem iaculis, at porttitor orci euismod. Nulla semper ante eu tortor faucibus dapibus. Pellentesque id massa tincidunt, sodales tellus sit amet,
-          pulvinar mauris. Sed hendrerit in ipsum pulvinar sagittis. Pellentesque auctor ut est vel elementum. Sed ullamcorper, velit at laoreet convallis, arcu felis tristique neque, eu placerat purus nunc in magna. Praesent sit amet augue elementum,
-          mattis orci id, ultricies diam. Maecenas quis fringilla dolor. Donec pharetra cursus nunc. Aliquam scelerisque volutpat consectetur.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Admin Menu Content</div>
-      <div class="panel-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque sit amet urna consectetur aliquam. Integer at ullamcorper dui. In quis orci et risus ultricies elementum in non tortor. Proin sapien mi, tempor vel condimentum porttitor,
-          sagittis efficitur augue. Mauris auctor erat in orci ullamcorper, ac rhoncus risus accumsan. Aliquam luctus elementum elit id pharetra. Pellentesque posuere, tellus eu vehicula placerat, elit neque auctor nulla, in sagittis velit nulla vitae
-          sapien. Suspendisse tempus tincidunt quam eget eleifend. Aenean vel iaculis nulla. Vestibulum vitae sapien feugiat, laoreet erat tempus, tempus tellus. Cras ac sapien lectus. Proin tristique sed est quis scelerisque. Nunc efficitur cursus massa,
-          vel volutpat tortor aliquet nec. Sed pharetra lacus vel ex efficitur sollicitudin. Duis id est in lectus vehicula ornare scelerisque id mauris. Phasellus convallis dapibus sem, sit amet sagittis tortor sodales in. Interdum et malesuada fames
-          ac ante ipsum primis in faucibus. Nunc et feugiat sapien, ut congue enim. Etiam tempus turpis ac sem iaculis, at porttitor orci euismod. Nulla semper ante eu tortor faucibus dapibus. Pellentesque id massa tincidunt, sodales tellus sit amet,
-          pulvinar mauris. Sed hendrerit in ipsum pulvinar sagittis. Pellentesque auctor ut est vel elementum. Sed ullamcorper, velit at laoreet convallis, arcu felis tristique neque, eu placerat purus nunc in magna. Praesent sit amet augue elementum,
-          mattis orci id, ultricies diam. Maecenas quis fringilla dolor. Donec pharetra cursus nunc. Aliquam scelerisque volutpat consectetur.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">Admin Menu Content</div>
-      <div class="panel-body">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pellentesque sit amet urna consectetur aliquam. Integer at ullamcorper dui. In quis orci et risus ultricies elementum in non tortor. Proin sapien mi, tempor vel condimentum porttitor,
-          sagittis efficitur augue. Mauris auctor erat in orci ullamcorper, ac rhoncus risus accumsan. Aliquam luctus elementum elit id pharetra. Pellentesque posuere, tellus eu vehicula placerat, elit neque auctor nulla, in sagittis velit nulla vitae
-          sapien. Suspendisse tempus tincidunt quam eget eleifend. Aenean vel iaculis nulla. Vestibulum vitae sapien feugiat, laoreet erat tempus, tempus tellus. Cras ac sapien lectus. Proin tristique sed est quis scelerisque. Nunc efficitur cursus massa,
-          vel volutpat tortor aliquet nec. Sed pharetra lacus vel ex efficitur sollicitudin. Duis id est in lectus vehicula ornare scelerisque id mauris. Phasellus convallis dapibus sem, sit amet sagittis tortor sodales in. Interdum et malesuada fames
-          ac ante ipsum primis in faucibus. Nunc et feugiat sapien, ut congue enim. Etiam tempus turpis ac sem iaculis, at porttitor orci euismod. Nulla semper ante eu tortor faucibus dapibus. Pellentesque id massa tincidunt, sodales tellus sit amet,
-          pulvinar mauris. Sed hendrerit in ipsum pulvinar sagittis. Pellentesque auctor ut est vel elementum. Sed ullamcorper, velit at laoreet convallis, arcu felis tristique neque, eu placerat purus nunc in magna. Praesent sit amet augue elementum,
-          mattis orci id, ultricies diam. Maecenas quis fringilla dolor. Donec pharetra cursus nunc. Aliquam scelerisque volutpat consectetur.
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-12">
-    <footer>
-      <p>Made width <i class='fa fa-heart text-danger'></i> By Dian Anarchyta</p>
-    </footer>
-  </div>-->
+</aside>-->
 
 
-</div>
+
+

@@ -5,6 +5,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {ShowAuthedDirective} from './directive/show-authed.directive';
 import {UserService} from './service/user.service';
 import {TokenService} from './service/token.service';
+import {HeaderComponent} from './layout/header/header.component';
 
 @NgModule({
   imports:[
@@ -13,13 +14,15 @@ import {TokenService} from './service/token.service';
     ReactiveFormsModule
   ],
   declarations:[
-    ShowAuthedDirective
+    ShowAuthedDirective,
+    HeaderComponent
   ],
   providers:[
     UserService,
     TokenService
   ],
   exports:[
+    HeaderComponent,
     ShowAuthedDirective
   ]
 })

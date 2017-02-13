@@ -19,8 +19,8 @@ export class NoAuthGuard implements CanActivate{
 
    canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<boolean>|Promise<boolean>|boolean{
      console.log(this.userService.isAuthenticated);
-     console.log('ok');
-     this.userService.isAuthenticated.subscribe(
+
+    /* this.userService.isAuthenticated.subscribe(
        (isAuthenticated)=>{
          console.log(isAuthenticated);
          if(!isAuthenticated){
@@ -29,7 +29,17 @@ export class NoAuthGuard implements CanActivate{
          this.result=isAuthenticated;
        }
      );
-     return this.result;
+     return this.result;*/
+
+     if (localStorage.getItem('currentUser')) {
+       // logged in so return true
+       return true;
+     }
+
+     // not logged in so redirect to login page
+     this.router.navigate(['/login']);
+     return false;
+
    }
 
 
