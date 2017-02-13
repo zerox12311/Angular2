@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AboutComponent } from './about/about.component';
 import {LoginComponent} from './login/login.component';
+import {NoAuthGuard} from './login/no-auth-guard.service';
 // import { ServicesComponent } from './services/services.component';
 
 
@@ -15,7 +16,7 @@ import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/about',pathMatch:'full'},
-    {path: 'about', component: AboutComponent},
+    {path: 'about', component: AboutComponent,canActivate:[NoAuthGuard]},
     {path: 'services', loadChildren:'./services/services.module#ServicesModule'},
     {path: 'login', component: LoginComponent}
 ];

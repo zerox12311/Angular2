@@ -19,8 +19,10 @@ export class NoAuthGuard implements CanActivate{
 
    canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):Observable<boolean>|Promise<boolean>|boolean{
      console.log(this.userService.isAuthenticated);
+     console.log('ok');
      this.userService.isAuthenticated.subscribe(
        (isAuthenticated)=>{
+         console.log(isAuthenticated);
          if(!isAuthenticated){
             this.router.navigate(["/login"]);
          }
