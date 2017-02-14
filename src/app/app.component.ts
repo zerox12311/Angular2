@@ -39,6 +39,7 @@ export class AppComponent {
       //判斷token
       this.userService.populate();
       this.userService.isAuthenticated.subscribe((isAuthenticated)=>{
+        console.log(isAuthenticated);
         this.isSingle=isAuthenticated;
       });
 
