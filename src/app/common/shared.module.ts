@@ -6,6 +6,7 @@ import {ShowAuthedDirective} from './directive/show-authed.directive';
 import {UserService} from './service/user.service';
 import {TokenService} from './service/token.service';
 import {HeaderComponent} from './layout/header/header.component';
+import {NoAuthGuard} from '../login/no-auth-guard.service';
 
 @NgModule({
   imports:[
@@ -19,7 +20,8 @@ import {HeaderComponent} from './layout/header/header.component';
   ],
   providers:[
     UserService,
-    TokenService
+    TokenService,
+    NoAuthGuard
   ],
   exports:[
     HeaderComponent,
