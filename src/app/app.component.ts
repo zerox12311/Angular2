@@ -20,7 +20,7 @@ declare var SidebarNav: any;
     // `,
     styleUrls: ['./app.component.css'],
     // styleUrls: ['../css/SidebarNav.min.css'],
-    providers: [AppService, UserService, TokenService]
+    providers: [AppService, TokenService]
 })
 export class AppComponent {
     getData: Array<{ menu_group: string, link: string, menuid: string }> = [];
