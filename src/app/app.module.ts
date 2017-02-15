@@ -12,6 +12,7 @@ import { NoAuthGuard } from './login/no-auth-guard.service';
 import {SharedModule} from './common/shared.module';
 import { ServicesComponent } from './services/services.component';
 import {RouterModule} from "@angular/router";
+import { UserService } from './common/service/user.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import {RouterModule} from "@angular/router";
     routing,
     SharedModule
   ],
-  providers: [NoAuthGuard],
+  providers: [NoAuthGuard,UserService],
   bootstrap: [AppComponent],
   exports:[RouterModule]
 })
