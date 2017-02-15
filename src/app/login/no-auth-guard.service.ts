@@ -24,7 +24,7 @@ export class NoAuthGuard implements CanActivate{
        console.log(isAuthenticated);
        return isAuthenticated;
      }).first();*/
-/*
+
      this.userService.isAuthenticated.subscribe(
            (isAuthenticated)=>{
              console.log(isAuthenticated);
@@ -34,7 +34,7 @@ export class NoAuthGuard implements CanActivate{
             this.result = isAuthenticated;
            }
      );
-     return this.result;*/
+   //  return this.result;
 
      if (localStorage.getItem('currentUser')) {
        // logged in so return true

@@ -62,6 +62,7 @@ export class UserService {
         console.log(error);
         return Observable.of<any>([]);
       });*/
+
     this.userObj = this.getUser(user).first();
 
     console.log(this.userObj);
