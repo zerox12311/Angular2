@@ -12,8 +12,10 @@ import { TokenService } from './token.service';
 export class UserService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
-  userObj : Observable<any>;
+
+  errorMessage:string;
   private searchTerms = new Subject<string>();
+  private result :boolean;
 
   constructor(private tokenServcie: TokenService,
               private http :Http
@@ -23,7 +25,6 @@ export class UserService {
   populate(){
     console.log('token'+this.tokenServcie.getToken());
     if (this.tokenServcie.getToken()){
-      console.log('aaa');
       this.setAuth({ username: 'xiajinxin', token: 'token-1', password: '123' } as User);
     }
     else {
@@ -44,37 +45,48 @@ export class UserService {
   }
 
   getUser(user: User):Observable<any>{
-    console.log('getUser');
     return this.http.post('http://localhost:51824/api/AZ/YAZI01/getToken', {userid: user.username, password: user.password})
-      .map((r:Response) => r.json().data);
-   // return .post(webUrl+'/api/AZ/YAZI01/getToken', {userid: userid, password: password});
+      .map((r:Response) => {
+        return r;
+      }).catch(this.handleError);
   }
 
-  //認證用戶是否有登錄過
+  private extractData(res: Response) {
+    let body = res.json();
+    return body.data || { };
+  }
+
+  //認證用戶是否登錄過
   getAuth(user: User): boolean {
-    //判斷用戶是否存在
-/*    this.userObj = this.searchTerms
-      .debounceTime(300)
-      .distinctUntilChanged()
-      .switchMap(
-        term => term?this.getUser(user):Observable.of<any>([])
-      ).catch(error => {
-        console.log(error);
-        return Observable.of<any>([]);
-      });*/
+    if(user.token != this.tokenServcie.getToken()){
+      localStorage.setItem('currentUser', user.username);
+      this.setAuth({ username: user.username, token: user.token, password: '' } as User);
+      return true;
+    }
+    return false;
 
-    this.userObj = this.getUser(user).first();
-
-    console.log(this.userObj);
-
-    if (user.username == 'xiajinxin' && user.password == '123') {
+  /*  if (user.username == 'xiajinxin' && user.password == '123') {
       user.token = 'token-' + new Date;
       localStorage.setItem('currentUser', user.username);
       this.setAuth(user);
       return true;
     }
     localStorage.removeItem('currentUser');
-    return false;
+    return false;*/
+  }
+
+  private handleError (error: Response | any) {
+    // In a real world app, we might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 
 }
