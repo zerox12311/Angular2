@@ -31,7 +31,10 @@ export class LoginComponent{
         this.user.token = ref.token;
         let result = this.userService.getAuth(this.user as User);
         if(result){
-          this.router.navigate(['/about']);
+          this.userService.getMenuTree(this.user.username).subscribe(r => {
+            console.log(JSON.parse(r._body));
+            this.router.navigate(['/about']);
+          });
         }
         else {
           this.error = '用戶名或密碼錯誤！';

@@ -1,5 +1,5 @@
 import { Injectable, Input } from "@angular/core";
-import {Http, Response} from '@angular/http';
+import {Http, Response, Headers} from '@angular/http';
 
 import { User } from '../models/user.models';
 import {ReplaySubject, Observable} from "rxjs";
@@ -12,6 +12,7 @@ import { TokenService } from './token.service';
 export class UserService {
   private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
+  public webUrl = "http://localhost:51824";
 
   errorMessage:string;
   private searchTerms = new Subject<string>();
@@ -44,19 +45,35 @@ export class UserService {
     this.isAuthenticatedSubject.next(false);
   }
 
+  /**
+  *  取得用戶數據
+  * */
   getUser(user: User):Observable<any>{
-    return this.http.post('http://localhost:51824/api/AZ/YAZI01/getToken', {userid: user.username, password: user.password})
+    return this.http.post( this.webUrl+'/api/AZ/YAZI01/getToken', {userid: user.username, password: user.password})
       .map((r:Response) => {
         return r;
       }).catch(this.handleError);
   }
 
-  private extractData(res: Response) {
-    let body = res.json();
-    return body.data || { };
+  /**
+   * 根據用戶獲取樹形菜單
+   * @param userName
+   */
+  getMenuTree(userName: String):Observable<any>{
+      return this.http.post(this.webUrl+'/api/AZ/YAZI01/getMenuTree',{username:userName})
+        .map((r:Response) => {
+          console.log(r);
+          return r;
+        })
+        .catch(this.handleError);
   }
 
-  //認證用戶是否登錄過
+
+  /**
+   * /認證用戶是否登錄過
+   * @param user
+   * @returns {boolean}
+   */
   getAuth(user: User): boolean {
     if(user.token != this.tokenServcie.getToken()){
       localStorage.setItem('currentUser', user.username);
@@ -74,6 +91,8 @@ export class UserService {
     localStorage.removeItem('currentUser');
     return false;*/
   }
+
+
 
   private handleError (error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
