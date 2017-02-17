@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { ServicesComponent } from './services/services.component';
 
+import {TabViewModule} from 'primeng/primeng';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { ServicesComponent } from './services/services.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    TabViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
