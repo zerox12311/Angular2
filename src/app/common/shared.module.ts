@@ -6,6 +6,7 @@ import {ShowAuthedDirective} from './directive/show-authed.directive';
 import {UserService} from './service/user.service';
 import {TokenService} from './service/token.service';
 import {HeaderComponent} from './layout/header/header.component';
+import {HttpClientService} from './service/http-client.service';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {HeaderComponent} from './layout/header/header.component';
     HeaderComponent
   ],
   providers:[
+    HttpClientService,
     UserService,
     TokenService
   ],

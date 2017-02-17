@@ -5,6 +5,7 @@ import { User } from '../models/user.models';
 import {ReplaySubject, Observable} from "rxjs";
 import {Subject} from 'rxjs/Subject';
 import { TokenService } from './token.service';
+import {HttpClientService} from './http-client.service';
 
 
 
@@ -19,7 +20,8 @@ export class UserService {
   private result :boolean;
 
   constructor(private tokenServcie: TokenService,
-              private http :Http
+              private http :Http,
+              private httpClient:HttpClientService
       ) { }
 
   //判斷是否登錄
@@ -60,7 +62,7 @@ export class UserService {
    * @param userName
    */
   getMenuTree(userName: String):Observable<any>{
-      return this.http.post(this.webUrl+'/api/AZ/YAZI01/getMenuTree',{username:userName})
+      return this.httpClient.post(this.webUrl+'/api/AZ/YAZI01/getMenuTree',{username:userName})
         .map((r:Response) => {
           console.log(r);
           return r;

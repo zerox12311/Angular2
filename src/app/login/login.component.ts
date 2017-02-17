@@ -33,7 +33,14 @@ export class LoginComponent{
         if(result){
           this.userService.getMenuTree(this.user.username).subscribe(r => {
             console.log(JSON.parse(r._body));
-            this.router.navigate(['/about']);
+            let rr = JSON.parse(r._body);
+            if(rr.errCode == 0){
+              this.router.navigate(['/about']);
+            }
+            else {
+              this.userService.clearAuth();
+              this.error = rr.errMessage;
+            }
           });
         }
         else {
