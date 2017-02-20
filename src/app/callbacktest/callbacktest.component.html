@@ -1,0 +1,58 @@
+<style>
+    .btnSize{
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #333333;
+        display: inline-block;
+        font-weight: 700;
+    }
+</style>
+<a class="btn  btnSize" ng-disabled="bfw.add" (click)="bfw_add();" ng-show="!_bfwAdd">
+    <i class="glyphicon glyphicon-plus"></i> 新增
+</a>
+<a  class="btn  btnSize" ng-disabled="bfw.edit" ng-click="bfw_edit();" ng-show="!_bfwEdit">
+    <i class="glyphicon glyphicon-pencil"></i> {{bfw_edit_text || '修改'}}
+</a>
+<a  class="btn  btnSize" ng-disabled="bfw.remove" ng-click="bfw_remove();" ng-show="!_bfwRemove">
+    <i class= "glyphicon glyphicon-trash"></i> 刪除
+</a>
+|
+<a  class="btn  btnSize" ng-disabled="bfw.query" ng-click="bfw_query();" ng-show="!_bfwQuery">
+    <i class="glyphicon glyphicon-search"></i> 查詢
+</a>
+<a  class="btn  btnSize" ng-disabled="bfw.print" ng-click="bfw_print();" ng-show="!_bfwPrint">
+    <i class="glyphicon glyphicon-print"></i> {{bfw_print_text || '列印'}}
+</a>
+|
+
+<a  class="btn  btnSize" ng-disabled="bfw.first" ng-click="bfw_first();" ng-show="!_bfwfirst">
+    <i class="glyphicon glyphicon-step-backward"></i> 第一筆
+</a>
+<a  class="btn  btnSize" ng-disabled="bfw.back" ng-click="bfw_back();" ng-show="!_bfwback">
+    <i class="glyphicon glyphicon-backward"></i> 上一筆
+</a>
+<a  class="btn  btnSize" ng-disabled="bfw.next" ng-click="bfw_next();" ng-show="!_bfwnext">
+    <i class="glyphicon glyphicon-forward"></i> 下一筆
+</a>
+<a  class="btn  btnSize" ng-disabled="bfw.last" ng-click="bfw_last();" ng-show="!_bfwlast">
+    <i class="glyphicon glyphicon-step-forward"></i> 最末筆
+</a>
+|
+
+<a  class="btn  btnSize" ng-disabled="bfw.save" ng-click="bfw_save();" ng-show="!_bfwSave">
+    <i class="glyphicon glyphicon-floppy-saved"></i> {{bfw_save_text || '存檔'}}
+</a>
+<a  class="btn  btnSize" ng-disabled="bfw.cancel" ng-click="bfw_cancel();" ng-show="!_bfwCancel">
+    <i class="glyphicon glyphicon-floppy-remove"></i> 取消
+</a>
+|
+
+<a class="btn  btnSize" ng-disabled="bfw.do" ng-click="bfw_do();" ng-show="!_bfwDo">
+    <i class="glyphicon glyphicon-share-alt"></i> {{bfw_do_text || '確認'}}
+</a>
+<a class="btn  btnSize" ng-disabled="bfw.undo" ng-click="bfw_undo();" ng-show="!_bfwUndo">
+    <i class="glyphicon glyphicon-share-alt"></i> {{bfw_undo_text || '取消確認'}}
+</a>
+<a class="btn  btnSize" ng-disabled="bfw.void" ng-click="bfw_void();" ng-show="!_bfwVoid">
+    <i class="glyphicon glyphicon-remove"></i> 作廢
+</a>

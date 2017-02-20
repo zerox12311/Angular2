@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 import { AboutComponent } from './about/about.component';
+import { CallcomponentComponent } from './callcomponent/callcomponent.component';
 // import { ServicesComponent } from './services/services.component';
 
 
@@ -15,7 +16,8 @@ import { AboutComponent } from './about/about.component';
 const routes: Routes = [
     {path: '', redirectTo: 'about',pathMatch:'full'},
     {path: 'about', component: AboutComponent},
-    {path: 'services', loadChildren:'./services/services.module#ServicesModule'}
+    {path: 'services', loadChildren:'./services/services.module#ServicesModule'},
+    {path: 'test', component: CallcomponentComponent}
 ];
 
 

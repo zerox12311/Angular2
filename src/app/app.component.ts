@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { AppService } from './app.service';
 
 declare var SidebarNav: any;
-import '../js/SidebarNav.min.js';
+// import '../js/SidebarNav.min.js';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     // template: `
-    // <ul *ngFor="let key of menu_title">
+    // <ul *ngFor="#key of menu_title">
     //     {{key}}
     //     <li *ngFor="let item of menu[key]">
     //         {{item.menuid}}
@@ -30,27 +30,27 @@ export class AppComponent {
     }
 
     ngOnInit() {
-        $('.sidebar-menu').SidebarNav();
-        console.log("GET MENU");
-        this._appService.getMenu()
-            .subscribe(
-            data => this.getData = data,
-            error => console.log("ERROR"),
-            () => {
-                console.log("FINSHED");
-                console.log(this.getData);
+        // $('.sidebar-menu').SidebarNav();
+        // console.log("GET MENU");
+        // this._appService.getMenu()
+        //     .subscribe(
+        //     data => this.getData = data,
+        //     error => console.log("ERROR"),
+        //     () => {
+        //         console.log("FINSHED");
+        //         console.log(this.getData);
 
-                this.menu = this.getData.reduce(function (pre, cur) {
-                    pre[cur.menu_group] = pre[cur.menu_group] || [];
-                    pre[cur.menu_group].push(cur);
-                    return pre;
-                }, {});
+        //         this.menu = this.getData.reduce(function (pre, cur) {
+        //             pre[cur.menu_group] = pre[cur.menu_group] || [];
+        //             pre[cur.menu_group].push(cur);
+        //             return pre;
+        //         }, {});
 
-                this.menu_title=Object.keys(this.menu);
-                console.log(Object.keys(this.menu));
-                console.log(this.menu);
+        //         this.menu_title=Object.keys(this.menu);
+        //         console.log(Object.keys(this.menu));
+        //         console.log(this.menu);
 
-            }
-            );
+        //     }
+        //     );
     }
 }

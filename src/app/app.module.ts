@@ -10,11 +10,15 @@ import { AboutComponent } from './about/about.component';
 import { ServicesComponent } from './services/services.component';
 
 import {TabViewModule} from 'primeng/primeng';
+import { CallbacktestComponent } from './callbacktest/callbacktest.component';
+import { CallcomponentComponent } from './callcomponent/callcomponent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AboutComponent
+    AboutComponent,
+    CallbacktestComponent,
+    CallcomponentComponent
   ],
   imports: [
     BrowserModule,
