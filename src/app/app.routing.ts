@@ -15,7 +15,7 @@ import {NoAuthGuard} from './login/no-auth-guard.service';
 // ];
 
 const routes: Routes = [
-    {path: '', redirectTo: '/about',pathMatch:'full'},
+ //   {path: '', redirectTo: '/about',pathMatch:'full'},
     {path: 'about', component: AboutComponent,canActivate:[NoAuthGuard]},
     {path: 'services', loadChildren:'./services/services.module#ServicesModule'},
     {path: 'login', component: LoginComponent}

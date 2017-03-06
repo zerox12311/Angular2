@@ -7,6 +7,7 @@ import {UserService} from './service/user.service';
 import {TokenService} from './service/token.service';
 import {HeaderComponent} from './layout/header/header.component';
 import {HttpClientService} from './service/http-client.service';
+import {SidernavComponent} from "./layout/sidernav/sidernav.component";
 
 
 @NgModule({

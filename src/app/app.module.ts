@@ -13,19 +13,21 @@ import {SharedModule} from './common/shared.module';
 import { ServicesComponent } from './services/services.component';
 import {RouterModule} from "@angular/router";
 import { UserService } from './common/service/user.service';
+import {SidernavComponent} from "./common/layout/sidernav/sidernav.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AboutComponent,
-    LoginComponent
-  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
     SharedModule
+  ],
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    LoginComponent,
+    SidernavComponent
   ],
   providers: [NoAuthGuard,UserService],
   bootstrap: [AppComponent],
